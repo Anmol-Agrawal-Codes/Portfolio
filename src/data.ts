@@ -26,8 +26,9 @@ export const experience: Experience[] = [
     role: 'Software Engineer',
     location: 'Bengaluru, Karnataka',
     period: 'Jul 2025 — Present',
-    summary: 'Own end-to-end development of REST APIs consumed by RF panels and client applications, supporting 10+ InstrumentStudio features used by 20K+ engineers.',
+    summary: 'Building production software for RF instrument configuration and measurement workflows in InstrumentStudio.',
     highlights: [
+      'Own end-to-end development of REST APIs consumed by RF panels and client applications, supporting 10+ InstrumentStudio features used by 20K+ engineers.',
       'Delivered REST APIs for instrument configuration, frequency setup, measurement triggering, and result retrieval workflows.',
       'Led diagnosis and resolution of 30+ production issues spanning asynchronous failures, concurrency bugs, and workflow reliability.',
       'Improved application responsiveness by 25% by redesigning long-running asynchronous workflows with non-blocking background processing.',

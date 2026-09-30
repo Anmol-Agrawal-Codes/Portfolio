@@ -1,0 +1,13 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0D1117"/>
+  <path d="M0 520H1200" stroke="#28323E"/>
+  <path d="M835 0V630" stroke="#28323E"/>
+  <circle cx="91" cy="88" r="26" stroke="#B8ED7A" stroke-width="2"/>
+  <text x="75" y="94" fill="#B8ED7A" font-family="monospace" font-size="13" font-weight="bold">AA</text>
+  <text x="90" y="228" fill="#E5E9EF" font-family="Arial, sans-serif" font-size="70" font-weight="700">Anmol Agrawal</text>
+  <text x="94" y="290" fill="#B8ED7A" font-family="monospace" font-size="24">SOFTWARE ENGINEER</text>
+  <text x="94" y="370" fill="#98A4B3" font-family="Arial, sans-serif" font-size="25">Reliable software · backend systems · clear API contracts</text>
+  <text x="94" y="570" fill="#647181" font-family="monospace" font-size="16">anmol-agrawal.dev</text>
+  <text x="888" y="104" fill="#647181" font-family="monospace" font-size="16">01 / ENGINEERING</text>
+  <path d="M887 184H1115M887 244H1056M887 304H1092M887 364H1018" stroke="#B8ED7A" stroke-width="3"/>
+</svg>

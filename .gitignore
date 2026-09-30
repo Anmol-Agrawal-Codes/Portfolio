@@ -1,0 +1,18 @@
+# Environment variables and secrets (NEVER commit these)
+.env
+.env.local
+*.env
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Common package manager dependencies
+node_modules/
+jspm_packages/
+
+# Build outputs, logs, and temporary files
+dist/
+build/
+*.log
+*.tmp

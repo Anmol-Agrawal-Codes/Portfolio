@@ -20,4 +20,3 @@ The current resume is served from `public/resume/Anmol_Agrawal_Resume_Updated.do
 ## Deployment
 
 The generated `dist` directory can be deployed to Vercel, Netlify, or any static host. For Vercel, import the repository and use the default Vite build settings.
-# Portfolio

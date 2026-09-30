@@ -17,6 +17,10 @@ Portfolio content is centralized in `src/data.ts`. Update `profile` for contact,
 
 The current resume is served from `public/resume/Anmol_Agrawal_Resume_Updated.docx`; update `profile.resume` when replacing it.
 
-## Deployment
+## GitHub Pages deployment
 
-The generated `dist` directory can be deployed to Vercel, Netlify, or any static host. For Vercel, import the repository and use the default Vite build settings.
+Pushes to `main` run `.github/workflows/deploy-pages.yml`, which builds the Vite application and publishes `dist`.
+
+In the repository's **Settings → Pages**, set **Source** to **GitHub Actions**. The site is then available at:
+
+`https://anmol-agrawal-codes.github.io/Portfolio/`

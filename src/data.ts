@@ -5,7 +5,7 @@ export const profile = {
   email: 'anmolagrawal20003@gmail.com',
   github: 'ADD_GITHUB_URL',
   linkedin: 'ADD_LINKEDIN_URL',
-  resume: '/resume/Anmol_Agrawal_Resume_Updated.docx',
+  resume: `${import.meta.env.BASE_URL}resume/Anmol_Agrawal_Resume_Updated.docx`,
   coding: 'ADD_CODING_PROFILE_URL',
 }
 

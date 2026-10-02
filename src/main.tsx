@@ -6,6 +6,7 @@ import './styles.css'
 const Icon = ({ children }: { children: string }) => <span className="icon" aria-hidden="true">{children}</span>
 const projectStatus = { active: 'Active development', completed: 'Completed', planned: 'Planned' } as const
 const configuredUrl = (url?: string) => url && /^https?:\/\//.test(url) ? url : undefined
+const projectUrl = (project: Project) => configuredUrl(project.live) ?? configuredUrl(project.github)
 
 function App() {
   const [theme, setTheme] = useState<'dark' | 'light'>(() => (localStorage.getItem('theme') as 'dark' | 'light') || 'dark')
@@ -86,7 +87,30 @@ function App() {
         <section id="projects" className="content-section section-shell projects-section">
           <div className="section-heading"><div><div className="section-label">03 / Selected projects</div><h2>Selected <span>work.</span></h2></div><p>Current backend work alongside<br />completed engineering projects.</p></div>
           <div className="filter-row" role="group" aria-label="Filter projects">{filters.map((item) => <button key={item} className={filter === item ? 'filter active' : 'filter'} onClick={() => setFilter(item)}>{item}</button>)}</div>
-          <div className="project-grid">{visibleProjects.map((project) => <article className={project.featured ? 'project-card featured' : 'project-card'} key={project.id}><div className="project-card-top"><span className="eyebrow">{project.featured ? 'Featured / ' : ''}{projectStatus[project.status]}</span><span className="project-arrow">↗</span></div><h3>{project.title}</h3><p>{project.description}</p>{project.featured && project.focus && <div className="project-focus"><span className="section-label">Current focus</span><p>{project.focus}</p></div>}{project.featured && project.architectureFlow && <div className="architecture-line">{project.architectureFlow.map((step, index) => <span key={step}>{index > 0 && <b>→</b>}{step}</span>)}</div>}<div className="tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><div className="project-footer"><span className={`project-state ${project.status}`}><i className="status-dot" /> {projectStatus[project.status]}</span><span className="project-actions"><button onClick={() => setSelectedProject(project)} aria-label={`View ${project.title} details`}>View details <Icon>↗</Icon></button>{configuredUrl(project.github) && <a href={project.github} target="_blank" rel="noreferrer" aria-label={`${project.title} on GitHub`}>GitHub ↗</a>}{configuredUrl(project.live) && <a href={project.live} target="_blank" rel="noreferrer" aria-label={`${project.title} live demo`}>Live ↗</a>}</span></div></article>)}</div>
+          <div className="project-grid">
+            {visibleProjects.map((project) => {
+              const destination = projectUrl(project)
+              const destinationLabel = configuredUrl(project.live) ? 'live demo' : 'GitHub repository'
+
+              return (
+                <article className={project.featured ? 'project-card featured' : 'project-card'} key={project.id}>
+                  <div className="project-card-top">
+                    <span className="eyebrow">{project.featured ? 'Featured / ' : ''}{projectStatus[project.status]}</span>
+                    {destination ? <a className="project-arrow" href={destination} target="_blank" rel="noreferrer" aria-label={`Open ${project.title} ${destinationLabel}`} title={`Open ${destinationLabel}`}>↗</a> : <span className="project-arrow" aria-hidden="true">↗</span>}
+                  </div>
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                  {project.featured && project.focus && <div className="project-focus"><span className="section-label">Current focus</span><p>{project.focus}</p></div>}
+                  {project.featured && project.architectureFlow && <div className="architecture-line">{project.architectureFlow.map((step, index) => <span key={step}>{index > 0 && <b>→</b>}{step}</span>)}</div>}
+                  <div className="tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+                  <div className="project-footer">
+                    <span className={`project-state ${project.status}`}><i className="status-dot" /> {projectStatus[project.status]}</span>
+                    <span className="project-actions"><button onClick={() => setSelectedProject(project)} aria-label={`View ${project.title} details`}>View details <Icon>↗</Icon></button></span>
+                  </div>
+                </article>
+              )
+            })}
+          </div>
         </section>
 
         <section id="skills" className="content-section section-shell skills-section"><div className="section-heading"><div className="section-label">04 / Toolkit</div><p>The tools I use to understand problems,<br />build solutions, and ship with confidence.</p></div><div className="skills-grid">{skillGroups.map((group) => <div className="skill-group" key={group.label}><h3>{group.label}</h3><div>{group.items.map((item) => <span key={item}>{item}</span>)}</div></div>)}</div><div className="exploring-row"><span className="section-label">Currently exploring</span><div>{['Java', 'Spring Boot', 'PostgreSQL', 'System Design', 'Distributed Systems', 'Backend Architecture'].map((item) => <span key={item}>{item}</span>)}</div></div></section>

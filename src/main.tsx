@@ -13,10 +13,12 @@ declare global {
 }
 
 document.addEventListener('click', (event) => {
-  const link = (event.target as Element).closest<HTMLAnchorElement>('a[href]')
-  if (!link) return
-  window.goatcounter?.count({ path: `click: ${link.getAttribute('href')}`, title: link.textContent?.trim() || '', event: true })
-})
+  const target = (event.target as Element).closest<HTMLElement>('a[href], button')
+  if (!target) return
+  const label = (target.getAttribute('aria-label') || target.textContent || '').replace(/[↗↘↑↓→]/g, '').trim()
+  const path = target instanceof HTMLAnchorElement ? `click: ${target.getAttribute('href')}` : `button: ${label}`
+  window.goatcounter?.count({ path, title: label, event: true })
+}, true) // capture phase: runs before React re-renders labels or stops propagation
 
 function App() {
   const [theme, setTheme] = useState<'dark' | 'light'>(() => (localStorage.getItem('theme') as 'dark' | 'light') || 'dark')
@@ -81,7 +83,7 @@ function App() {
           </div>
         </section>
 
-        <section className="signal-strip"><div><strong>01+</strong><span>years building<br />production software</span></div><div><strong>30+</strong><span>production issues<br />resolved</span></div><div><strong>Spring</strong><span>current backend<br />focus</span></div><div><strong>1000+</strong><span>DSA problems<br />solved</span></div></section>
+        <section className="signal-strip"><div><strong>02+</strong><span>years building<br />production software</span></div><div><strong>30+</strong><span>production issues<br />resolved</span></div><div><strong>Spring</strong><span>current backend<br />focus</span></div><div><strong>1000+</strong><span>DSA problems<br />solved</span></div></section>
 
         <section id="about" className="content-section section-shell about-section">
           <div className="section-label">01 / About</div>

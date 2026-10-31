@@ -8,6 +8,16 @@ const projectStatus = { active: 'Active development', completed: 'Completed', pl
 const configuredUrl = (url?: string) => url && /^https?:\/\//.test(url) ? url : undefined
 const projectUrl = (project: Project) => configuredUrl(project.live) ?? configuredUrl(project.github)
 
+declare global {
+  interface Window { goatcounter?: { count: (vars: { path: string; title?: string; event?: boolean }) => void } }
+}
+
+document.addEventListener('click', (event) => {
+  const link = (event.target as Element).closest<HTMLAnchorElement>('a[href]')
+  if (!link) return
+  window.goatcounter?.count({ path: `click: ${link.getAttribute('href')}`, title: link.textContent?.trim() || '', event: true })
+})
+
 function App() {
   const [theme, setTheme] = useState<'dark' | 'light'>(() => (localStorage.getItem('theme') as 'dark' | 'light') || 'dark')
   const [menuOpen, setMenuOpen] = useState(false)
